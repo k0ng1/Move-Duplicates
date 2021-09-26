@@ -22,8 +22,6 @@ func Em(path string) {
 	}
 
 	if filepath.Base(filepath.Dir(path)) == filepath.Base(path) {
-
-		log.Println("pp", filepath.Dir(path))
 		move(path, filepath.Dir(path))
 	}
 }
@@ -38,6 +36,7 @@ func move(oldPath, newPath string) {
 		if _, err := os.Stat(newPath); os.IsNotExist(err) && file.IsDir() {
 			move(op, np)
 		}
+
 		err = os.Rename(op, np)
 		if err != nil {
 			log.Fatal(err)
